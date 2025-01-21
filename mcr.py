@@ -36,13 +36,21 @@ def main():
         else:
             print("Player 2: ", end="")
         print("Which cell to mark? i:[1..3], j:[1..3]: ")
-        i, j = map(int, input().split())
-        i -= 1
-        j -= 1
+        while True:
+            try:
+                i, j = map(int, input().split())
+                i -= 1
+                j -= 1
+                if 0 <= i < 3 and 0 <= j < 3:
+                    break
+                else:
+                    print("Invalid input. Please enter i:[1..3], j:[1..3]")
+            except ValueError:
+                print("Invalid input. Please enter valid numbers.")
         if not turn:
-            game[i][j] = "X"
+            game[i][j] = 'X'
         else:
-            game[i][j] = "O"
+            game[i][j] = 'O'
         if is_win(game):
             print("Win!")
             break  # Terminate the game
